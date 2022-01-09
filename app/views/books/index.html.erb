@@ -51,7 +51,7 @@
           <% @books.each do |book| %>
             <tr>
               <td>
-                <a href="">
+                <a href=<%= user_path(book.user_id) %>>
                   <%= attachment_image_tag User.find(book.user_id), :profile_image, :fill, 50, 50, format: 'jpeg' %>
                 </a>
               </td>

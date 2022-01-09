@@ -41,7 +41,6 @@
       <table class="table table-hover table-inverse">
         <thead>
           <tr>
-            <th></th>
             <th>image</th>
             <th>name</th>
             <th colspan="3"></th>
@@ -56,6 +55,7 @@
                 </a>
               </td>
               <td><%= user.name %></td>
+              <td><a href="/users/<%= user.id %>">Show</a></td>
             </tr>
           <% end %>
         </tbody>
