@@ -11,7 +11,4 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
-  def getUser(id)
-    User.find(id)
-  end
 end

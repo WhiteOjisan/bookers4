@@ -1,19 +1,27 @@
 class UsersController < ApplicationController
+
+  $cur_usr = nil
+
   def index
     @users = User.all
-    @user = current_user
+    @user = $cur_usr
     @book = Book.new
   end
 
   def show
     @user = User.find(params[:id])
+    $cur_usr = @user
     @books = Book.all
     @book = Book.new
   end
 
   def edit
-    @user = User.find(params[:id])
-    @book = Book.new
+    if $cur_usr == current_user
+      @user = User.find(params[:id])
+      @book = Book.new
+    else
+      redirect_to user_path(current_user)
+    end
   end
 
   def update
