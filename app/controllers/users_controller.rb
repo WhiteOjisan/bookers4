@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   $cur_usr = nil
 
   def index
+    $cur_usr = current_user
     @users = User.all
     @user = $cur_usr
     @book = Book.new
