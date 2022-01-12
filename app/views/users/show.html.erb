@@ -14,11 +14,11 @@
         </thead>
         <tbody>
           <% @books.each do |book| %>
-            <% if book.user_id == $cur_usr.id %>
+            <% if book.user_id == @user.id %>
             <tr>
               <td>
-                <a href="">
-                  <%= attachment_image_tag $cur_usr, :profile_image, :fill, 50, 50, format: 'jpeg' %>
+                <a href="/users/<%= book.user_id %>">
+                  <%= attachment_image_tag User.find(book.user_id), :profile_image, :fill, 50, 50, format: 'jpeg' %>
                 </a>
               </td>
               <td>

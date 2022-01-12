@@ -1,25 +1,16 @@
 class BooksController < ApplicationController
   def index
-    $cur_usr = current_user
     @books = Book.all
-    @user = $cur_usr
-    @book = Book.new
+    @user = current_user
   end
 
   def show
     @book = Book.find(params[:id])
-    $cur_usr = User.find(@book.user_id)
-    @user = $cur_usr
-  end
-
-  def new
-    @book = Book.new
-    @book.user_id = current_user
+    @user = User.find(@book.user_id)
   end
 
   def create
     @user = current_user
-    $cur_usr = current_user
     @books = Book.all
     @book = Book.new(book_params)
     @book.user_id = current_user.id
@@ -32,11 +23,12 @@ class BooksController < ApplicationController
   end
 
   def edit
-    if $cur_usr == current_user
+    @book = Book.find(params[:id])
+    @user = User.find(@book.user_id)
+    if @user == current_user
       @books = Book.all
-      @book = Book.find(params[:id])
     else
-      $cur_usr = current_user
+      @user = current_user
       redirect_to books_path
     end
   end

@@ -10,7 +10,11 @@
     <% book = Book.new %>
   <% end %>
   <h2>User info</h2>
-  <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg' %>
+  <% if user.profile_image_id != nil %>
+    <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg' %>
+  <% else %>
+    <img src="/assets/noimage.png" alt="noimage" width="100 height="100">
+  <% end %>
   <table class="table">
     <tbody>
       <tr></tr>

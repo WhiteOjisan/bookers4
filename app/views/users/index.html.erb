@@ -15,12 +15,14 @@
           <% @users.each do |user| %>
             <tr>
               <td>
-                <a href="">
+                <% if user.profile_image_id != nil %>
                   <%= attachment_image_tag user, :profile_image, :fill, 50, 50, format: 'jpeg' %>
-                </a>
+                <% else %>
+                  <img src="/assets/noimage.png" alt="noimage" width="50 height="50">
+                <% end %>
               </td>
               <td><%= user.name %></td>
-              <td><a href="/users/<%= user.id %>">Show</a></td>
+              <td><%= link_to "Show", user_path(user.id) %></td>
             </tr>
           <% end %>
         </tbody>
