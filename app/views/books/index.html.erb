@@ -16,9 +16,11 @@
           <% @books.each do |book| %>
             <tr>
               <td>
-                <a href=<%= user_path(book.user_id) %>>
-                  <%= attachment_image_tag User.find(book.user_id), :profile_image, :fill, 50, 50, format: 'jpeg' %>
-                </a>
+                <% if User.find(book.user_id).profile_image_id != nil %>
+                  <%= link_to (attachment_image_tag User.find(book.user_id), :profile_image, :fill, 100, 100, format: 'jpeg'), user_path(book.user_id) %>
+                <% else %>
+                  <%= link_to (image_tag "/noimage.png", alt:"noimage", size:"100x100"), user_path(book.user_id) %>
+                <% end %>
               </td>
               <td>
                 <%= link_to book.title, book_path(book) %>

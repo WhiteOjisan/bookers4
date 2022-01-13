@@ -18,7 +18,7 @@
                 <% if user.profile_image_id != nil %>
                   <%= attachment_image_tag user, :profile_image, :fill, 50, 50, format: 'jpeg' %>
                 <% else %>
-                  <img src="/assets/noimage.png" alt="noimage" width="50 height="50">
+                  <%= image_tag "/noimage.png", alt:"noimage", size:"50x50" %>
                 <% end %>
               </td>
               <td><%= user.name %></td>

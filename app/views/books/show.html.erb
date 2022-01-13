@@ -15,15 +15,15 @@
         <tbody>
           <tr>
             <td>
-              <a href="/users/<%= @book.user_id %>">
-                <%= attachment_image_tag User.find(@book.user_id), :profile_image, :fill, 50, 50, format: 'jpeg' %>
-                <br>
-                <%= User.find(@book.user_id).name %>
-              </a>
+              <% if User.find(@book.user_id).profile_image_id != nil %>
+                <%= link_to (attachment_image_tag User.find(@book.user_id), :profile_image, :fill, 50, 50, format: 'jpeg'), user_path(@book.user_id) %>
+              <% else %>
+                <%= link_to (image_tag "/noimage.png", alt:"noimage", size:"50x50"), user_path(@book.user_id) %>
+              <% end %>
+              <br>
+              <%= link_to User.find(@book.user_id).name, user_path(@book.user_id) %>
             </td>
-            <td>
-              <a class="" href=""><%= @book.title %></a>
-            </td>
+            <td><%= @book.title %></td>
             <td><%= @book.body %></td>
             <td>
               <% if @book.user_id == current_user.id %>
