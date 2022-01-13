@@ -13,7 +13,7 @@
   <% if user.profile_image_id != nil %>
     <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg' %>
   <% else %>
-    <%= image_tag "/noimage.png", alt:"noimage", size:"100x100" %>
+    <%= image_tag asset_path("noimage.png"), alt:"noimage", size:"100x100" %>
   <% end %>
   <table class="table">
     <tbody>
